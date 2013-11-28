@@ -23,3 +23,45 @@ footer {
 footer p {
     padding:5px 0 12px 10px
 }
+
+.domain{
+    fill: none; 
+    stroke:rgb(167, 166, 166); 
+    stroke-width: 1px; 
+    shape-rendering: crispEdges;
+}
+
+/* axis line test */
+.axis path { 
+    fill: none; 
+    stroke:#000; 
+    stroke-width: 1.5px; 
+    shape-rendering: crispEdges;
+}
+
+/* controls the top line in area */
+.area.line {
+    fill: none;
+    stroke: #058dc7;
+    stroke-width: 6.0px;
+}
+
+.area.line.points {
+    fill: #058dc7;
+    stroke: #fff;
+    stroke-width: 3.0px;
+}
+
+/* histogram styles */
+.histo.rect { fill: #058dc7; }
+
+.bar.rect {
+    fill: #058dc7;
+    stroke: none;
+}
+
+.bar.text {
+    fill: #000;
+    stroke: none;
+    font-size: 12px;
+}
