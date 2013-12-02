@@ -5,7 +5,9 @@ angular.module('mean').directive('agendaChart', ['Agendas',
             scope: { // attributes bound to the scope of the directive
                 // agendas: []
                 bind: "=",
-                target: "@target"
+                target: "@target",
+                height: "=",
+                width: "="
             },
             transclude: false,
             replace: true,
