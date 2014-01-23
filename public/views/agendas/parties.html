@@ -1,5 +1,9 @@
-<section data-ng-controller="AgendasController">
-	
+<section data-ng-controller="AgendasController" data-ng-init="findOne()">
+	<h1>{{agenda.description}} {{agenda.votes.length}}</h1>
+	<div>
+		<a data-ng-click="byScore=true">לפי ציון</a>
+		<a data-ng-click="byScore=false">לפי הצבעות</a>
+	</div>
 	<chart id="agendasChart" value='agendasChart' height="400" width="940"></chart>
 	
 </section>
