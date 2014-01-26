@@ -1,5 +1,5 @@
-angular.module('mean.system').controller('AgendasController', ['$scope', 'Global', 'Agendas',
-    function($scope, Global, Agendas) {
+angular.module('mean.system').controller('AgendasController', ['$scope', 'Global', 'Agendas', '$routeParams',
+    function($scope, Global, Agendas, $routeParams) {
         $scope.byParties = true;
         $scope.byScore = true;
         // Agendas.getAgendas(function(data) {
@@ -8,7 +8,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         // });
 
         //
-           $scope.findOne = function() {
+        $scope.findOne = function() {
             Agendas.get({
                 agendaId: $routeParams.agendaId
             }, function(agenda) {
@@ -84,7 +84,6 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
                     reversed: false, labels: {step: 1}
             }
         };
-    }
 
     $scope.selectParty = function(party){
         $scope.party_id = parseInt((party.absolute_url.match(/\d{2}/) || party.absolute_url.match(/\d/))[0]);
@@ -97,7 +96,8 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
             return member;
         });
 
-     };
+    };
+}
 
 ]);
 

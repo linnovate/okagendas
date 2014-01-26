@@ -17,7 +17,7 @@
 //Agendas service used for agendas REST endpoint
 angular.module('mean').factory("Agendas", ['$resource', 
     function($resource) {
-        return $resource('agendass/:agendaId', {
+        return $resource('agendas/:agendaId', {
             agendaId: '@_id'
         });
     }
