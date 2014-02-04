@@ -5,6 +5,9 @@ angular.module('mean').config(['$routeProvider',
         when('/agendas/:agendaId/', {
             templateUrl: 'views/agendas/parties.html'
         }).
+        when('/agendas/:agendaId/members/:partyId', {
+            templateUrl: 'views/agendas/members.html'
+        }).
         otherwise({
             redirectTo: '/'
         });

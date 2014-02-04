@@ -70,7 +70,7 @@ module.exports = function(app, passport, auth) {
 
     var agenda = require('../app/controllers/agenda');
     // console.log(agenda.getit;
-    app.get('/agendas', agenda.getit);
+    app.get('/agendas/:agendaId', agenda.getit);
 
 
     //Finish with setting up the articleId param

@@ -13,12 +13,17 @@
 // ]);
 
 
-
 //Agendas service used for agendas REST endpoint
-angular.module('mean').factory("Agendas", ['$resource', 
-    function($resource) {
-        return $resource('agendas/:agendaId', {
-            agendaId: '@_id'
-        });
-    }
+angular.module('mean').factory("Agendas", ['$http', 
+    function($http) {
+        return {
+            getAgenda : function(param, callback){
+                $http.get("/agendas/"+param)
+                .success(function(data) {
+                    console.log(data);
+                    callback(data);
+                });
+            }
+        };
+    }   
 ]);
