@@ -17,10 +17,9 @@
 angular.module('mean').factory("Agendas", ['$http', 
     function($http) {
         return {
-            getAgenda : function(param, callback){
-                $http.get("/agendas/"+param)
+            getAgenda : function(id, range, callback){
+                $http.get("/agendas/"+id+"?ranges="+range)
                 .success(function(data) {
-                    console.log(data);
                     callback(data);
                 });
             }

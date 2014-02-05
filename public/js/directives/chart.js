@@ -90,6 +90,7 @@ angular.module('mean').directive('chart', function () {
             }
             Highcharts.setOptions(theme);  
             var chart = new Highcharts.Chart(newSettings);
+            scope.$parent.loading = false;
         });
     }
 };

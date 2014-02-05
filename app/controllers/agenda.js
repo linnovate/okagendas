@@ -1,8 +1,8 @@
 var request = require('request');
 
 exports.getit = function(req, res) {
-    console.log(req.params.agendaId);
-    request('http://oknesset.org/api/v2/agenda/' + req.params.agendaId + "?ranges=201001-201301", function(error, response, body) {
+    ranges = req.query.ranges !== '' ? "?ranges=" + req.query.ranges : "";
+    request('http://oknesset.org/api/v2/agenda/' + req.params.agendaId + ranges, function(error, response, body) {
         if (!error && response.statusCode == 200) {
             res.send(body);
         }

@@ -1,13 +1,17 @@
 angular.module('mean.system').controller('AgendasController', ['$scope', 'Global', 'Agendas', '$routeParams',
     function($scope, Global, Agendas, $routeParams) {
-        
+        $scope.loading = true;
         $scope.byParties = true;
         $scope.byScore = true;
         
-        console.log($routeParams);
-
         $scope.findOne = function() {
-            Agendas.getAgenda($routeParams.agendaId, function(agenda) {
+            Agendas.getAgenda($routeParams.agendaId, '', function(agenda) {
+                $scope.agenda = agenda;
+                $scope.initAgendasChart();
+            });
+        };
+        $scope.irange = function(range) {
+            Agendas.getAgenda($routeParams.agendaId, range, function(agenda) {
                 $scope.agenda = agenda;
                 $scope.initAgendasChart();
             });
@@ -15,12 +19,17 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
 
         $scope.initAgendasChart = function() {//display data by parties or by members
             console.log("initAgendasChart");
-           
+            console.log($scope.agenda);
+
+            $scope.loading = true;
             values = [];
             names = [];
+            x = $scope.agenda.parties[0].score.toFixed(2);
+            console.log(typeof x);
             if ($scope.byParties){//display data by parties
-               
+                $scope.partyName = "";
                 for (var party in $scope.agenda.parties){
+
                     if ($scope.byScore)
                         values.push($scope.agenda.parties[party].score);
                     else
@@ -30,7 +39,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
             }
             else{//display data by members
                 partyMembers = $scope.filterMembers();
-
+                console.log(partyMembers[0].score.toFixed(2))
                 for (var member in partyMembers){
                     if ($scope.byScore)
                         values.push(partyMembers[member].score);
@@ -40,7 +49,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
                 }
               
             }
-             $scope.agendasChart = {
+            $scope.agendasChart = {
                 byScore : $scope.byScore,
                 xAxis :[{
                     categories : names
@@ -59,13 +68,13 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         };
 
     $scope.selectParty = function(partyIndex){
-        console.log($scope.agenda.parties[partyIndex]);
         $scope.partyId = $scope.agenda.parties[partyIndex] 
         $scope.byParties = false;
-        partyId = $scope.agenda.parties[partyIndex].absolute_url.match(/\d{1,2}/)
-        if (partyId)
+        partyId = $scope.agenda.parties[partyIndex].absolute_url.match(/\d{1,2}/);
+        if (partyId){
             $scope.partyId = parseInt(partyId[0]);
-        console.log($scope.partyId);
+            $scope.partyName = $scope.agenda.parties[partyIndex].name
+        }
         $scope.initAgendasChart();
     }
 
