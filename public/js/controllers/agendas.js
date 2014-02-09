@@ -4,13 +4,8 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         $scope.byParties = true;
         $scope.byScore = true;
         
-        $scope.findOne = function() {
-            Agendas.getAgenda($routeParams.agendaId, '', function(agenda) {
-                $scope.agenda = agenda;
-                $scope.initAgendasChart();
-            });
-        };
-        $scope.irange = function(range) {
+        $scope.query = function(param) {
+            range = param ? param : '';
             Agendas.getAgenda($routeParams.agendaId, range, function(agenda) {
                 $scope.agenda = agenda;
                 $scope.initAgendasChart();
@@ -24,12 +19,9 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
             $scope.loading = true;
             values = [];
             names = [];
-            x = $scope.agenda.parties[0].score.toFixed(2);
-            console.log(typeof x);
             if ($scope.byParties){//display data by parties
                 $scope.partyName = "";
                 for (var party in $scope.agenda.parties){
-
                     if ($scope.byScore)
                         values.push($scope.agenda.parties[party].score);
                     else
@@ -39,7 +31,6 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
             }
             else{//display data by members
                 partyMembers = $scope.filterMembers();
-                console.log(partyMembers[0].score.toFixed(2))
                 for (var member in partyMembers){
                     if ($scope.byScore)
                         values.push(partyMembers[member].score);
@@ -58,9 +49,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
                     linkedTo: 0,
                     categories : names
                 }],
-                series : [{
-                  data: values
-                }]
+                data : values
             };
             if(!$scope.$$phase) {
               $scope.$apply();
@@ -68,12 +57,16 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         };
 
     $scope.selectParty = function(partyIndex){
-        $scope.partyId = $scope.agenda.parties[partyIndex] 
-        $scope.byParties = false;
-        partyId = $scope.agenda.parties[partyIndex].absolute_url.match(/\d{1,2}/);
-        if (partyId){
-            $scope.partyId = parseInt(partyId[0]);
-            $scope.partyName = $scope.agenda.parties[partyIndex].name
+        if (!partyIndex){
+           $scope.byParties = true; 
+        }
+        else{
+            $scope.byParties = false;
+            partyId = $scope.agenda.parties[partyIndex].absolute_url.match(/\d{1,2}/);
+            if (partyId){
+                $scope.partyId = parseInt(partyId[0]);
+                $scope.partyName = $scope.agenda.parties[partyIndex].name
+            }
         }
         $scope.initAgendasChart();
     }
@@ -83,18 +76,14 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
           return (member.party_id == $scope.partyId);
         });
      };
+
+    $scope.selectRange = function(rangeObj){
+        range = "";
+        range += rangeObj.startValue.getFullYear().toString()+("0" + (rangeObj.startValue.getMonth() + 1)).slice(-2);
+        range += "-" + rangeObj.endValue.getFullYear().toString()+("0" + (rangeObj.endValue.getMonth() + 1)).slice(-2);
+        // $scope.query(range);
+    };
  }
 
 ]);
-
-
-
-//TODO:
-    //1. sort the results  
-    //
-//Questions:
-    //1. what is the fields for score & votes of members?
-    //2. what is the opposite votes?
-    //3. how to get the dates?
-    //4. should we implement only the chart or all the page?
 

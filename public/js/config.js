@@ -3,13 +3,10 @@ angular.module('mean').config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
         when('/agendas/:agendaId/', {
-            templateUrl: 'views/agendas/parties.html'
-        }).
-        when('/agendas/:agendaId/members/:partyId', {
-            templateUrl: 'views/agendas/members.html'
+            templateUrl: 'views/agendas/show.html'
         }).
         otherwise({
-            redirectTo: '/'
+            templateUrl: 'views/index.html'
         });
     }
 ]);

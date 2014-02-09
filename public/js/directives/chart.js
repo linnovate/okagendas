@@ -12,7 +12,7 @@ angular.module('mean').directive('chart', function () {
         var chartsDefaults = {
             chart: {
                 renderTo: element[0],
-                type: attrs.type || "bar",
+                type: "bar",
                 height: attrs.height || null,
                 width: attrs.width || null
             },
@@ -25,11 +25,16 @@ angular.module('mean').directive('chart', function () {
                 minorGridLineWidth: 0,
                 title : ""
             },
+            series : [{
+                data: []
+            }],
             plotOptions: {
                 bar: {
                     dataLabels: {
-                        enabled: true
-
+                        enabled: true,
+                        formatter : function() {
+                            return this.y.toFixed(2);
+                        } 
                     }
                 },
                 series: {
@@ -56,8 +61,9 @@ angular.module('mean').directive('chart', function () {
                 enabled: false
             }
         }; 
-       
-
+        
+        var colors =['#AFEBAF', '#A4DFA5', '#9CD79D', '#9ACB9A','#85BF85','#85BF85','#7AB57A', '#6EAB6F', '#64A164', '#57975A','#4E8D4E'];
+        var negativeColors = ['#FCB2B3','#F6A8A8','#F29090','#EA8B8B','#E38686','#DE8382','#D57D7D']
         var theme = {
             colors: ['#468747', '#BA4A49'],
             xAxis: {
@@ -84,9 +90,16 @@ angular.module('mean').directive('chart', function () {
             var deepCopy = true;
             var newSettings = {};
             $.extend(deepCopy, newSettings, chartsDefaults, scope.chartData); 
-            console.log("newSettings : "+ newSettings);
-             if (scope.chartData.byScore){
-                newSettings.plotOptions.bar.dataLabels.format = '{y}%'; 
+            angular.forEach(scope.chartData.data, function(value){
+                console.log(parseInt(value))
+                newSettings.series[0].data.push({ y: value, color: (parseInt(value) > 0) ? colors[parseInt(Math.abs(value/10))] : negativeColors[parseInt(Math.abs(value/10))]}) ;
+            });
+            
+
+            if (scope.chartData.byScore){
+                newSettings.plotOptions.bar.dataLabels.formatter = function() {
+                    return this.y.toFixed(2)+'%';
+                }; 
             }
             Highcharts.setOptions(theme);  
             var chart = new Highcharts.Chart(newSettings);
