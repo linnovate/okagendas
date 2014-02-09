@@ -1,0 +1,15 @@
+<section data-ng-controller="AgendasController" data-ng-init="query(null)">
+	<h1>{{agenda.name}}</h1>
+	<div>
+		<a data-ng-click="byScore=true; initAgendasChart();" data-ng-class="{active : byScore}">לפי ציון</a>
+		<a data-ng-click="byScore=false;; initAgendasChart()" data-ng-class="{active : !byScore}">לפי הצבעות</a>
+	</div>
+	<span data-ng-click="byParties=true">{{partyName}}</span>
+	<img data-ng-show="loading" src="/img/loaders/loader.gif">
+	<select ng-options="value.name for (key,value) in agenda.parties" ng-model="party" ng-click="selectParty(party.index)">
+		<option value="" ng-click="selectParty(false)">כל המפלגות</option>
+	</select>
+	<range id="range1" data="rangeOptions"></range>
+	<chart id="agendasChart" data-ng-hide="loading" data='agendasChart' height="800"></chart>
+	
+</section>
