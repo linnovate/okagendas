@@ -1,8 +1,0 @@
-<section data-ng-controller="AgendasController" data-ng-init="findOne(); byParties=false;">
-	
-	<chart id="agendasChart" value='agendasChart' height="400" width="940" data-ng-init="byParties=false"></chart>
-	<select>
-		<option data-ng-repeat="party in agenda.parties" data-ng-click="selectParty(party)">{{party.name}}</option>
-	</select>
-	
-</section>

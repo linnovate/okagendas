@@ -3,7 +3,7 @@ angular.module('mean').directive('chart', function () {
     restrict: 'E',
     template: '<div></div>',
     scope: {
-        chartData: "=data",
+        chartData: "=data"
     },
     transclude:true,
     replace: true,
@@ -44,7 +44,10 @@ angular.module('mean').directive('chart', function () {
                     point: {
                         events: {
                             click: function() {
-                                scope.$parent.selectParty(this.x);
+                                if(scope.chartData.byParties)
+                                    scope.$parent.selectParty(this.x);
+                                else
+                                     scope.$parent.showMemberDetails(this.x);      
                             }
                         }
                     }
@@ -59,6 +62,9 @@ angular.module('mean').directive('chart', function () {
             },
             credits: {
                 enabled: false
+            },
+            exporting:{
+
             }
         }; 
         
@@ -91,7 +97,6 @@ angular.module('mean').directive('chart', function () {
             var newSettings = {};
             $.extend(deepCopy, newSettings, chartsDefaults, scope.chartData); 
             angular.forEach(scope.chartData.data, function(value){
-                console.log(parseInt(value))
                 newSettings.series[0].data.push({ y: value, color: (parseInt(value) > 0) ? colors[parseInt(Math.abs(value/10))] : negativeColors[parseInt(Math.abs(value/10))]}) ;
             });
             

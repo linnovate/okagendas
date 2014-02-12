@@ -9,7 +9,26 @@
 	<select ng-options="value.name for (key,value) in agenda.parties" ng-model="party" ng-click="selectParty(party.index)">
 		<option value="" ng-click="selectParty(false)">כל המפלגות</option>
 	</select>
-	<range id="range1" data="rangeOptions"></range>
+	<range id="range1"></range>
 	<chart id="agendasChart" data-ng-hide="loading" data='agendasChart' height="800"></chart>
+	<div data-ng-show="display.memberDetails" data-ng-include="'views/agendas/member-details.html'"></div>
+	<div data-ng-show="display.about" data-ng-include="'views/agendas/about.html'"></div>
+	<span data-ng-include="'views/agendas/what-is-agenda.html'"></span>
+	<div class="bottom">
+		<ul>
+			<li class="share"  ng-click="display.share=!display.share">שתף
+				<select select2 ng-show="display.share">
+					<option class="pic">כתמונה</option>
+					<option class="embed">עמבד</option>
+					<option class="facebook">פייסבוק</option>
+				</select>
+			</li>
+			<li class="about" ng-click="display.about=!display.about">אודות האגנדה</li>
+			<li  ng-click="display.whatIsAgenda=!display.whatIsAgenda">מהי אג'נדה?
+			</li>
+			<li>בעריכת {{agenda.public_owner_name}}</li>
+			<li class="credit">מאת <a href="/">כנסת פתוחה</a></li>
+		</ul>
+	</div>
 	
 </section>

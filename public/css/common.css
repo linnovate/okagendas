@@ -65,3 +65,36 @@ footer p {
     stroke: none;
     font-size: 20px;
 }
+select, select:focus{
+    border-radius: 20px;
+    outline: none;
+}
+.bottom{
+    background-color: #DAEDFB;
+    color: #25547E;
+    direction: rtl;
+    height: 30px;
+}
+.bottom ul li{
+    display: inline;
+    list-style: none;
+    border-right: 1px solid #89AEC0;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.bottom ul li:first-child{
+    border: none;
+}
+.info{
+    padding: 25px;
+    height: 800px;
+    width: 930px;
+    border: 3px solid;
+    position: absolute;
+    margin-top: -800px;
+    z-index: 20;
+    background-color: #DAEDFB;
+}
+.whatIsAgenda{
+    
+}

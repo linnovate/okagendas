@@ -3,6 +3,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         $scope.loading = true;
         $scope.byParties = true;
         $scope.byScore = true;
+
         
         $scope.query = function(param) {
             range = param ? param : '';
@@ -13,9 +14,8 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         };
 
         $scope.initAgendasChart = function() {//display data by parties or by members
-            console.log("initAgendasChart");
             console.log($scope.agenda);
-
+            $scope.display.memberDetails = false;
             $scope.loading = true;
             values = [];
             names = [];
@@ -30,18 +30,19 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
                 }
             }
             else{//display data by members
-                partyMembers = $scope.filterMembers();
-                for (var member in partyMembers){
+                $scope.partyMembers = $scope.filterMembers();
+                for (var member in $scope.partyMembers){
                     if ($scope.byScore)
-                        values.push(partyMembers[member].score);
+                        values.push($scope.partyMembers[member].score);
                     else
-                        values.push(partyMembers[member].volume);
-                    names.push(partyMembers[member].name);
+                        values.push($scope.partyMembers[member].volume);
+                    names.push($scope.partyMembers[member].name);
                 }
               
             }
             $scope.agendasChart = {
                 byScore : $scope.byScore,
+                byParties: $scope.byParties,
                 xAxis :[{
                     categories : names
                 }, { // mirror axis on right side
@@ -71,6 +72,17 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         $scope.initAgendasChart();
     }
 
+    $scope.showMemberDetails = function(memberIndex){                     
+        $scope.member = $scope.partyMembers[memberIndex];
+        Agendas.getMember( $scope.member.absolute_url, function(memberDetails){
+            $scope.memberDetails = memberDetails;
+            $scope.display.memberDetails = true;
+            if(!$scope.$$phase) {
+                $scope.$apply();
+            }
+        });
+    }
+
     $scope.filterMembers = function(){
         return $scope.agenda.members.filter(function(member){
           return (member.party_id == $scope.partyId);
@@ -81,8 +93,15 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         range = "";
         range += rangeObj.startValue.getFullYear().toString()+("0" + (rangeObj.startValue.getMonth() + 1)).slice(-2);
         range += "-" + rangeObj.endValue.getFullYear().toString()+("0" + (rangeObj.endValue.getMonth() + 1)).slice(-2);
+        console.log(range);
         // $scope.query(range);
     };
+
+     $scope.display = {
+        "share" : false,
+        "whatIsAgenda": false,
+        "memberDetails" : false
+    }
  }
 
 ]);

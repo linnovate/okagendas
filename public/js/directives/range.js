@@ -2,16 +2,14 @@ angular.module('mean').directive('range', function () {
   return {
     restrict: 'E',
     template: '<div></div>',
-    scope: {
-        rangeData: "=data",
-    },
+    scope: {},
     transclude:true,
     replace: true,
 
     link: function (scope, element, attrs) {
         
         dt = new Date();
-        var rangeDefaults = {
+        var rangeSettings = {
             margin: {
                 top: 10
             },
@@ -36,15 +34,12 @@ angular.module('mean').directive('range', function () {
                 startValue: dt.setMonth(dt.getMonth()-5),
                 endValue: dt
             },
-            // selectedRangeChanged: function (e) {
-            //     scope.$parent.selectRange(e);
-            // }
+            selectedRangeChanged: function (e) {
+                scope.$parent.selectRange(e);
+            }
         };
 
         scope.$watch(function(value) {
-            var deepCopy = true;
-            var rangeSettings = {};
-            $.extend(deepCopy, rangeSettings, rangeDefaults, scope.rangeData); 
             $(element[0]).dxRangeSelector(rangeSettings);
         });
     }

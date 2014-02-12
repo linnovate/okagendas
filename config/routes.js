@@ -72,7 +72,6 @@ module.exports = function(app, passport, auth) {
     // console.log(agenda.getit;
     app.get('/agendas/:agendaId', agenda.getit);
 
-
     //Finish with setting up the articleId param
     app.param('articleId', articles.article);
     
