@@ -63,8 +63,13 @@ angular.module('mean').directive('chart', function () {
             credits: {
                 enabled: false
             },
-            exporting:{
-
+            navigation: {
+                buttonOptions: {
+                    enabled: false
+                }
+            },
+            exporting: {
+                type: 'image/jpeg'
             }
         }; 
         
@@ -109,6 +114,7 @@ angular.module('mean').directive('chart', function () {
             Highcharts.setOptions(theme);  
             var chart = new Highcharts.Chart(newSettings);
             scope.$parent.loading = false;
+            //chart.exportChart();
         });
     }
 };
