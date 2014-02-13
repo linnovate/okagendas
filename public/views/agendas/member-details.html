@@ -1,7 +1,8 @@
 <div class="info">
-	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	<span ng-click="display.memberDetails=false">x</span><br/>
+	121212122121212121212
 	<div class="right">
-		<img src="{{member.img}}">
+		<img src="{{memberDetails.img_url}}">
 	</div>
 	<div class="left">
 		<span>{{member.name}}</span>
@@ -9,10 +10,12 @@
 		<span>{{member.party}}</span>
 	</div>
 	<div class="bottom-member">
-		<a href=""><img src="" />כנסת</a>
-		<a href="twitter"><img src=""></a>
-		<a href="facebook"><img src=""></a>
-		<a href="youtube"><img src=""></a>
+		<a href="{{knessetLink.url}}" target="_blank"><img src="" />כנסת</a>
+		<a href="{{twitterLink.url}}" target="_blank">Twitter</a>
+		<a href="{{fbLink.url}}" target="_blank">Facebook</a>
+		<a href=""><img src=""></a>
 
 	</div>
 </div>
+
+

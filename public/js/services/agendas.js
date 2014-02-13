@@ -23,13 +23,11 @@ angular.module('mean').factory("Agendas", ['$http',
                     callback(data);
                 });
             },
-            getMember : function(url, callback){
-                data= {"aaa":"aaa", "bbb":"bbb"};
-                callback(data);
-                // $http.get("//oknesset.org/api/v2/"+url)
-                // .success(function(data) {
-                //     callback(data);
-                // });
+            getInfo : function(url, callback){
+                $http.get("/apiInfo"+url)
+                .success(function(data) {
+                    callback(data);
+                });
             }
         };
     }   
