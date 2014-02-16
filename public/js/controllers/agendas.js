@@ -58,7 +58,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         };
 
     $scope.selectParty = function(partyIndex){
-        if (!partyIndex){
+        if (partyIndex == undefined){
            $scope.byParties = true; 
         }
         else{
@@ -72,9 +72,8 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         $scope.initAgendasChart();
     }
 
-    $scope.showMemberDetails = function(memberIndex){                     
+    $scope.showMemberDetails = function(memberIndex){  
         $scope.member = $scope.partyMembers[memberIndex];
-        console.log($scope.member);
         Agendas.getInfo("/member/" + $scope.member.id, function(memberDetails){
             console.log(JSON.stringify(memberDetails));
             $scope.memberDetails = memberDetails;
@@ -112,7 +111,11 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         $scope.knessetLink = $scope.memberDetails.links.filter(function(x){return (x.url.indexOf("knesset.gov.il") > -1); })[0];
         console.log($scope.knessetLink);
     }
+
+    $scope.export = function(){
+        // console.log($scope.chart);
+        // $scope.chart.exportChart();
+    }
  }
 
 ]);
-

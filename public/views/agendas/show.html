@@ -16,13 +16,13 @@
 		<div data-ng-show="display.about" data-ng-include="'views/agendas/about.html'"></div>
 		<span data-ng-include="'views/agendas/what-is-agenda.html'"></span>
 		<div class="bottom">
+			<div  ng-show="display.share">
+				<div class="pic" data-ng-click="export()">כתמונה</div>
+				<div class="embed">עמבד</div>
+				<div class="facebook">פייסבוק</div>
+			</div>
 			<ul>
 				<li class="share"  ng-click="display.share=!display.share">שתף
-					<select select2 ng-show="display.share">
-						<option class="pic">כתמונה</option>
-						<option class="embed">עמבד</option>
-						<option class="facebook">פייסבוק</option>
-					</select>
 				</li>
 				<li class="about" ng-click="display.about=!display.about">אודות האגנדה</li>
 				<li  ng-click="display.whatIsAgenda=!display.whatIsAgenda">מהי אג'נדה?
@@ -30,6 +30,7 @@
 				<li>בעריכת {{agenda.public_owner_name}}</li>
 				<li class="credit">מאת <a href="/">כנסת פתוחה</a></li>
 			</ul>
+			
 		</div>
 	</div>
 	

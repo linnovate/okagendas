@@ -69,11 +69,18 @@ select, select:focus{
     border-radius: 20px;
     outline: none;
 }
+.bottom, .bottom > *{
+    float: right;
+}
 .bottom{
+    width: 100%;
+}
+.bottom ul{
     background-color: #DAEDFB;
     color: #25547E;
     direction: rtl;
     height: 30px;
+    width: 100%;
 }
 .bottom ul li{
     display: inline;

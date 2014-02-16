@@ -7,7 +7,6 @@ angular.module('mean').directive('chart', function () {
     },
     transclude:true,
     replace: true,
-
     link: function (scope, element, attrs) {
         var chartsDefaults = {
             chart: {
@@ -44,6 +43,7 @@ angular.module('mean').directive('chart', function () {
                     point: {
                         events: {
                             click: function() {
+                                console.log(scope.chartData.byParties);
                                 if(scope.chartData.byParties)
                                     scope.$parent.selectParty(this.x);
                                 else
@@ -72,7 +72,6 @@ angular.module('mean').directive('chart', function () {
                 type: 'image/jpeg'
             }
         }; 
-        
         var colors =['#AFEBAF', '#A4DFA5', '#9CD79D', '#9ACB9A','#85BF85','#85BF85','#7AB57A', '#6EAB6F', '#64A164', '#57975A','#4E8D4E'];
         var negativeColors = ['#FCB2B3','#F6A8A8','#F29090','#EA8B8B','#E38686','#DE8382','#D57D7D']
         var theme = {
@@ -114,8 +113,9 @@ angular.module('mean').directive('chart', function () {
             Highcharts.setOptions(theme);  
             var chart = new Highcharts.Chart(newSettings);
             scope.$parent.loading = false;
-            //chart.exportChart();
+            scope.$parent.chart = chart;
         });
+    //
     }
 };
 
