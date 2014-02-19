@@ -73,7 +73,7 @@ angular.module('mean').directive('chart', function () {
             }
         }; 
         var colors =['#AFEBAF', '#A4DFA5', '#9CD79D', '#9ACB9A','#85BF85','#85BF85','#7AB57A', '#6EAB6F', '#64A164', '#57975A','#4E8D4E'];
-        var negativeColors = ['#FCB2B3','#F6A8A8','#F29090','#EA8B8B','#E38686','#DE8382','#D57D7D']
+        var negativeColors = ['#FCB2B3','#F6A8A8','#F29090','#EA8B8B','#E38686','#DE8382','#D57D7D'];
         var theme = {
             colors: ['#468747', '#BA4A49'],
             xAxis: {
@@ -81,7 +81,7 @@ angular.module('mean').directive('chart', function () {
                 tickColor: '#fff',
                 labels: {
                     style: {
-                        color: '#494949',
+                        color: '#222222',
                         // font: '11px Trebuchet MS, Verdana, sans-serif'
                     }
                 },

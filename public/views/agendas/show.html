@@ -10,7 +10,7 @@
 		<option value="" ng-click="selectParty(false)">כל המפלגות</option>
 	</select>
 	<div class="chart-container" data-ng-hide="loading">
-		<!-- <range id="range1"></range> -->
+		<range id="range1"></range>
 		<chart id="agendasChart"  data='agendasChart' height="800"></chart>
 		<div data-ng-show="display.memberDetails" data-ng-include="'views/agendas/member-details.html'"></div>
 		<div data-ng-show="display.about" data-ng-include="'views/agendas/about.html'"></div>
