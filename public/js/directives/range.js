@@ -2,13 +2,13 @@ angular.module('mean').directive('range', function () {
   return {
     restrict: 'E',
     template: '<div></div>',
-    scope: {},
+    scope: { 
+    },
     transclude:true,
     replace: true,
 
     link: function (scope, element, attrs) {
-        
-        dt = new Date();
+        rangeObj = scope.$parent.range;
         var rangeSettings = {
             margin: {
                 top: 10
@@ -17,33 +17,33 @@ angular.module('mean').directive('range', function () {
                 height: 150,
             },
             scale: {
-                startValue: new Date(2012, 1, 1),
-                endValue: dt,
+                startValue: rangeObj.start,
+                endValue: rangeObj.end,
                 minorTickInterval: "month",
-                majorTickInterval:  'month' ,
+                majorTickInterval:  "month",
                 minRange: "month",
-                showMinorTicks: false
+                showMinorTicks: true
             },
             marker: {
                 visible: true
             },
-            // sliderMarker: {
-            //     format: ""
-            // },
-            selectedRange: {
-                startValue: dt.setMonth(dt.getMonth()-5),
-                endValue: dt
+            sliderMarker: {
+                format: "MM-yyyy"
             },
-            selectedRangeChanged: function (e) {
+            selectedRange: {
+                startValue: rangeObj.end.setMonth(rangeObj.end.getMonth()-5),
+                endValue: rangeObj.end
+            },
+            selectedRangeChanged : function (e) {
                 scope.$parent.selectRange(e);
             }
+           
         };
 
-        scope.$watch(function(value) {
+        // scope.$watch(function(value) {         
             $(element[0]).dxRangeSelector(rangeSettings);
-        });
+        // });
     }
 };
 
 });
-

@@ -3,7 +3,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         $scope.loading = true;
         $scope.byParties = true;
         $scope.byScore = true;
-
+        $scope.range = {"start": new Date(), "end": new Date(2012, 1, 1)}
         
         $scope.query = function(param) {
             range = param ? param : '';
@@ -58,7 +58,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         };
 
     $scope.selectParty = function(partyIndex){
-        if (partyIndex == undefined){
+        if (partyIndex === undefined){
            $scope.byParties = true; 
         }
         else{
@@ -66,11 +66,11 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
             partyId = $scope.agenda.parties[partyIndex].absolute_url.match(/\d{1,2}/);
             if (partyId){
                 $scope.partyId = parseInt(partyId[0]);
-                $scope.partyName = $scope.agenda.parties[partyIndex].name
+                $scope.partyName = $scope.agenda.parties[partyIndex].name;
             }
         }
         $scope.initAgendasChart();
-    }
+    };
 
     $scope.showMemberDetails = function(memberIndex){  
         $scope.member = $scope.partyMembers[memberIndex];
@@ -83,7 +83,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
                 $scope.$apply();
             }
         });
-    }
+    };
 
     $scope.filterMembers = function(){
         return $scope.agenda.members.filter(function(member){
@@ -103,19 +103,19 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         "share" : false,
         "whatIsAgenda": false,
         "memberDetails" : false
-    }
+    };
 
     $scope.memberLinks = function(){
         $scope.fbLink = $scope.memberDetails.links.filter(function(x){return (x.url.indexOf("facebook.com") > -1); })[0];
         $scope.twitterLink = $scope.memberDetails.links.filter(function(x){return (x.url.indexOf("twitter.com") > -1); })[0];
         $scope.knessetLink = $scope.memberDetails.links.filter(function(x){return (x.url.indexOf("knesset.gov.il") > -1); })[0];
         console.log($scope.knessetLink);
-    }
+    };
 
     $scope.export = function(){
         // console.log($scope.chart);
         // $scope.chart.exportChart();
-    }
+    };
  }
 
 ]);
