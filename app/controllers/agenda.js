@@ -2321,12 +2321,12 @@ exports.getit = function(req, res) {
             res.send(body);
         }
     });
-}
+};
 
 exports.getInfo = function(req, res){
     request('http://oknesset.org/api/v2/' + req.params.resource + "/" + req.params.id, function(error, response, body) {
         if (!error && response.statusCode == 200) {
             res.send(body);
         }
-    })
-}
+    });
+};

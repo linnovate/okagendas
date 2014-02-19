@@ -3,7 +3,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         
         $scope.byParties = true;
         $scope.byScore = true;
-        $scope.range = {"start": new Date(), "end": new Date(2012, 1, 1)}
+        $scope.range = {"start": new Date(), "end": new Date(2012, 1, 1)};
         
         $scope.query = function(param) {
             $scope.loading = true;

@@ -9,7 +9,7 @@
 	<select ng-options="value.name for (key,value) in agenda.parties" ng-model="party" ng-click="selectParty(party.index)">
 		<option value="" ng-click="selectParty(false)">כל המפלגות</option>
 	</select>
-	<div class="chart-container" data-ng-hide="loading">
+	<div class="chart-container">
 		<range id="range1"></range>
 		<chart id="agendasChart"  data='agendasChart'></chart>
 		<div data-ng-show="display.memberDetails" data-ng-include="'views/agendas/member-details.html'"></div>
