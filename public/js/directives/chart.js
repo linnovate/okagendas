@@ -12,7 +12,6 @@ angular.module('mean').directive('chart', function () {
             chart: {
                 renderTo: element[0],
                 type: "bar",
-                // height: attrs.height || null,
                 width: attrs.width || null
             },
             yAxis: {
@@ -56,7 +55,7 @@ angular.module('mean').directive('chart', function () {
             tooltip : {
                 enabled : false
             },
-            title : "",
+            title : {text : ""},
             legend : {
                 enabled : false
             },
@@ -115,7 +114,6 @@ angular.module('mean').directive('chart', function () {
             var chart = new Highcharts.Chart(newSettings);
             scope.$parent.loading = false;
             scope.$parent.chart = chart;
-            console.log(chart);
         });
     //
     }

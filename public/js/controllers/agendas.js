@@ -1,11 +1,15 @@
 angular.module('mean.system').controller('AgendasController', ['$scope', 'Global', 'Agendas', '$routeParams',
     function($scope, Global, Agendas, $routeParams) {
-        $scope.loading = true;
+        
         $scope.byParties = true;
         $scope.byScore = true;
         $scope.range = {"start": new Date(), "end": new Date(2012, 1, 1)}
         
         $scope.query = function(param) {
+            $scope.loading = true;
+            if(!$scope.$$phase) {
+              $scope.$apply();
+            }
             range = param ? param : '';
             Agendas.getAgenda($routeParams.agendaId, range, function(agenda) {
                 $scope.agenda = agenda;
@@ -75,7 +79,6 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
     $scope.showMemberDetails = function(memberIndex){  
         $scope.member = $scope.partyMembers[memberIndex];
         Agendas.getInfo("/member/" + $scope.member.id, function(memberDetails){
-            console.log(JSON.stringify(memberDetails));
             $scope.memberDetails = memberDetails;
             $scope.memberLinks();
             $scope.display.memberDetails = true;
@@ -96,7 +99,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         range += rangeObj.startValue.getFullYear().toString()+("0" + (rangeObj.startValue.getMonth() + 1)).slice(-2);
         range += "-" + rangeObj.endValue.getFullYear().toString()+("0" + (rangeObj.endValue.getMonth() + 1)).slice(-2);
         console.log(range);
-        // $scope.query(range);
+        $scope.query(range);
     };
 
      $scope.display = {
@@ -113,8 +116,8 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
     };
 
     $scope.export = function(){
-        // console.log($scope.chart);
-        // $scope.chart.exportChart();
+        $scope.chart.options.title.text = $scope.agenda.name;
+        $scope.chart.exportChart();
     };
  }
 
