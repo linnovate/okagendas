@@ -12,7 +12,7 @@ angular.module('mean').directive('chart', function () {
             chart: {
                 renderTo: element[0],
                 type: "bar",
-                height: attrs.height || null,
+                // height: attrs.height || null,
                 width: attrs.width || null
             },
             yAxis: {
@@ -103,6 +103,7 @@ angular.module('mean').directive('chart', function () {
             angular.forEach(scope.chartData.data, function(value){
                 newSettings.series[0].data.push({ y: value, color: (parseInt(value) > 0) ? colors[parseInt(Math.abs(value/10))] : negativeColors[parseInt(Math.abs(value/10))]}) ;
             });
+            newSettings.chart.height = scope.chartData.data.length * 26;
             
 
             if (scope.chartData.byScore){
@@ -114,6 +115,7 @@ angular.module('mean').directive('chart', function () {
             var chart = new Highcharts.Chart(newSettings);
             scope.$parent.loading = false;
             scope.$parent.chart = chart;
+            console.log(chart);
         });
     //
     }

@@ -92,16 +92,24 @@ select, select:focus{
 .bottom ul li:first-child{
     border: none;
 }
-.info{
+.member-info{
     padding: 25px;
-    height: 800px;
-    width: 930px;
-    border: 3px solid;
-    position: absolute;
-    margin-top: -800px;
+    height: 208px;
+    width: 356px;
+    border: 1px solid #E5EAF0;
+    
     z-index: 20;
-    background-color: #DAEDFB;
+    background-color: #ffffff;/*DAEDFB*/
 }
+.member-info .name{
+    color: #5693CC;
+}
+.member-info .right img{
+    width: 132px;
+    height: 173px;
+    border: 1px solid #E5EAF0;
+}
+
 .whatIsAgenda{
     
 }
