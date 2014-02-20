@@ -1,10 +1,12 @@
-angular.module('mean.system').controller('AgendasController', ['$scope', 'Global', 'Agendas', '$routeParams',
-    function($scope, Global, Agendas, $routeParams) {
+angular.module('mean.system').controller('AgendasController', ['$scope', 'Global', 'Agendas', '$routeParams', '$location',
+    function($scope, Global, Agendas, $routeParams, $location) {
         
         $scope.byParties = true;
         $scope.byScore = true;
         $scope.range = {"start": new Date(), "end": new Date(2012, 1, 1)};
-        
+        $scope.embed = $location.absUrl();
+
+         console.log($scope.embed)
         $scope.query = function(param) {
             $scope.loading = true;
             // if(!$scope.$$phase) {
@@ -14,6 +16,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
             Agendas.getAgenda($routeParams.agendaId, range, function(agenda) {
                 $scope.agenda = agenda;
                 $scope.initAgendasChart();
+               
             });
         };
 
@@ -108,7 +111,8 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
      $scope.display = {
         "share" : false,
         "whatIsAgenda": false,
-        "memberDetails" : false
+        "memberDetails" : false,
+        "embed" : false
     };
 
     $scope.memberLinks = function(){

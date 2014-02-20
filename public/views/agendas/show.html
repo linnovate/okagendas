@@ -14,24 +14,24 @@
 		<chart id="agendasChart"  data='agendasChart'></chart>
 		<div data-ng-show="display.memberDetails" data-ng-include="'views/agendas/member-details.html'"></div>
 		<div data-ng-show="display.about" data-ng-include="'views/agendas/about.html'"></div>
-		<span data-ng-include="'views/agendas/what-is-agenda.html'"></span>
-		<div class="bottom">
-			<div ng-show="display.share">
-				<div class="pic" data-ng-click="export()">כתמונה</div>
-				<div class="embed">עמבד</div>
-				<div class="facebook">פייסבוק</div>
-			</div>
-			<ul>
-				<li class="share"  ng-click="display.share=!display.share">שתף
-				</li>
-				<li class="about" ng-click="display.about=!display.about">אודות האגנדה</li>
-				<li  ng-click="display.whatIsAgenda=!display.whatIsAgenda">מהי אג'נדה?
-				</li>
-				<li>בעריכת {{agenda.public_owner_name}}</li>
-				<li class="credit">מאת <a href="/">כנסת פתוחה</a></li>
-			</ul>
-			
+		<div data-ng-show="display.embed" data-ng-include="'views/agendas/share-link.html'"></div>
+		<div class="share-select" ng-show="display.share">
+			<div class="pic"><a data-ng-click="export()">כתמונה</a></div>
+			<div class="embed"><a data-ng-click="display.embed=!display.embed">עמבד</a></div>
+			<div class="facebook"><a href="">פייסבוק</a></div>
 		</div>
+		<span data-ng-include="'views/agendas/what-is-agenda.html'"></span>
 	</div>
+	<div class="footer">
+		<ul>
+			<li class="share"><a ng-click="display.share=!display.share">שתף</a></li>
+			<li class="about"><a ng-click="display.about=!display.about">אודות האגנדה</a></li>
+			<li class="what-is-agenda"><a ng-click="display.whatIsAgenda=!display.whatIsAgenda">מהי אג'נדה?</a></li>
+			<li>בעריכת {{agenda.public_owner_name}}</li>
+			<li class="credit">מאת <a href="/">כנסת פתוחה</a></li>
+		</ul>
+		
+	</div>
+	
 	
 </section>
