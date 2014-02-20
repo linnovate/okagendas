@@ -7,9 +7,9 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         
         $scope.query = function(param) {
             $scope.loading = true;
-            if(!$scope.$$phase) {
-              $scope.$apply();
-            }
+            // if(!$scope.$$phase) {
+            //   $scope.$apply();
+            // }
             range = param ? param : '';
             Agendas.getAgenda($routeParams.agendaId, range, function(agenda) {
                 $scope.agenda = agenda;
@@ -62,15 +62,18 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         };
 
     $scope.selectParty = function(partyIndex){
-        if (partyIndex === undefined){
+        if (!partyIndex || partyIndex === undefined){
            $scope.byParties = true; 
+           $scope.partyId = $scope.partyName = $scope.party = null;
         }
         else{
             $scope.byParties = false;
-            partyId = $scope.agenda.parties[partyIndex].absolute_url.match(/\d{1,2}/);
+            if (!isNaN(partyIndex))//click on chart
+                $scope.party = $scope.agenda.parties[partyIndex];
+            partyId = $scope.party.absolute_url.match(/\d{1,2}/);
             if (partyId){
                 $scope.partyId = parseInt(partyId[0]);
-                $scope.partyName = $scope.agenda.parties[partyIndex].name;
+                $scope.partyName = $scope.party.name;
             }
         }
         $scope.initAgendasChart();

@@ -1,12 +1,12 @@
 <section data-ng-controller="AgendasController" data-ng-init="query(null)">
 	<h1>{{agenda.name}}</h1>
-	<div>
-		<a data-ng-click="byScore=true; initAgendasChart();" data-ng-class="{active : byScore}">לפי ציון</a>
-		<a data-ng-click="byScore=false;; initAgendasChart()" data-ng-class="{active : !byScore}">לפי הצבעות</a>
+	<div class="by-score-container">
+		<a data-ng-click="byScore=true; initAgendasChart();" class="by-score" data-ng-class="{active : byScore}">לפי ציון</a>
+		<a data-ng-click="byScore=false;; initAgendasChart()" class="by-score" data-ng-class="{active : !byScore}">לפי הצבעות</a>
 	</div>
 	<span data-ng-click="byParties=true">{{partyName}}</span>
-	<img data-ng-show="loading" src="/img/loaders/loader.gif">
-	<select ng-options="value.name for (key,value) in agenda.parties" ng-model="party" ng-click="selectParty(party.index)">
+	<img data-ng-show="loading" class="loading" src="/img/loaders/loader.gif">
+	<select ng-options="party.name for (key,party) in agenda.parties" ng-model="party" ng-click="selectParty(party)">
 		<option value="" ng-click="selectParty(false)">כל המפלגות</option>
 	</select>
 	<div class="chart-container">

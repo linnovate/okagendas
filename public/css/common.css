@@ -68,6 +68,8 @@ footer p {
 select, select:focus{
     border-radius: 20px;
     outline: none;
+    float: right;
+    clear: both;
 }
 .bottom, .bottom > *{
     float: right;
@@ -113,7 +115,29 @@ select, select:focus{
 .whatIsAgenda{
     
 }
+h1{
+    float: right;
+    width: 415px;
+    text-align: right;
+}
+a.by-score{
+   color: #222222;
+    text-decoration: none;
+    width: 125px;
+    float: left;
+    text-align: center;
+}
 
-.scale{
-background-color: red;
+.by-score-container{
+    float: left;
+    width: 525px;
+    border-bottom: 2px solid #222222;
+}
+a.by-score.active{
+    font-weight: bold;
+    border-bottom: 2px solid #222222;
+}
+.loading{
+    position: absolute;
+    top: 200px;
 }
