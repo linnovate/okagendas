@@ -2,36 +2,42 @@
 	<h1>{{agenda.name}}</h1>
 	<div class="by-score-container">
 		<a data-ng-click="byScore=true; initAgendasChart();" class="by-score" data-ng-class="{active : byScore}">לפי ציון</a>
-		<a data-ng-click="byScore=false;; initAgendasChart()" class="by-score" data-ng-class="{active : !byScore}">לפי הצבעות</a>
+		<a data-ng-click="byScore=false; initAgendasChart()" class="by-score" data-ng-class="{active : !byScore}">לפי הצבעות</a>
 	</div>
-	<span data-ng-click="byParties=true">{{partyName}}</span>
 	<img data-ng-show="loading" class="loading" src="/img/loaders/loader.gif">
-	<select ng-options="party.name for (key,party) in agenda.parties" ng-model="party" ng-click="selectParty(party)">
-		<option value="" ng-click="selectParty(false)">כל המפלגות</option>
+	<select data-ng-options="party.name for (key,party) in agenda.parties" data-ng-model="party" data-ng-click="selectParty(party)">
+		<option value="" data-ng-click="selectParty(false)">כל המפלגות</option>
 	</select>
 	<div class="chart-container">
-		<range id="range1"></range>
-		<chart id="agendasChart"  data='agendasChart'></chart>
+		<!-- <range id="range1"></range> -->
+		<!-- <div range bind="agenda.parties" target="myChart"></div> -->
+		<!-- <div data-ng-include="'views/agendas/range.html'"></div> -->
+
+		<chart id="agendas-chart"  data='agendasChart' data-ng-class="{'active' : !display.general, 'inactive' : display.general}"></chart>
 		<div data-ng-show="display.memberDetails" data-ng-include="'views/agendas/member-details.html'"></div>
-		<div data-ng-show="display.about" data-ng-include="'views/agendas/about.html'"></div>
-		<div data-ng-show="display.embed" data-ng-include="'views/agendas/share-link.html'"></div>
-		<div class="share-select" ng-show="display.share">
-			<div class="pic"><a data-ng-click="export()">כתמונה</a></div>
-			<div class="embed"><a data-ng-click="display.embed=!display.embed">עמבד</a></div>
-			<div class="facebook"><a href="">פייסבוק</a></div>
+		<div class="info" data-ng-show="display.general" data-ng-class="{'active' : display.general, 'inactive' : !display.general}">
+
+			<div class="share-select" data-ng-show="display.share">
+				<div class="pic"><a data-ng-click="export()">כתמונה</a></div>
+				<div class="embed"><a data-ng-click="toggleDisplay('embed')">עמבד</a></div>
+				<div class="facebook"><a href="">פייסבוק</a></div>
+			</div>
+			<div data-ng-show="display.embed" data-ng-include="'views/agendas/share-link.html'"></div>
+			<div data-ng-show="display.about" data-ng-include="'views/agendas/about.html'"></div>
+			<div data-ng-show="display.whatIsAgenda" data-ng-include="'views/agendas/what-is-agenda.html'"></div>
+			
 		</div>
-		<span data-ng-include="'views/agendas/what-is-agenda.html'"></span>
 	</div>
-	<div class="footer">
+	<div class="footer" data-ng-show="!loading">
 		<ul>
-			<li class="share"><a ng-click="display.share=!display.share">שתף</a></li>
-			<li class="about"><a ng-click="display.about=!display.about">אודות האגנדה</a></li>
-			<li class="what-is-agenda"><a ng-click="display.whatIsAgenda=!display.whatIsAgenda">מהי אג'נדה?</a></li>
+			<li class="share"><a data-ng-click="toggleDisplay('share')">שתף</a></li>
+			<li class="about"><a data-ng-click="toggleDisplay('about')">אודות האג'נדה</a></li>
+			<li class="what-is-agenda"><a data-ng-click="toggleDisplay('whatIsAgenda')">מהי אג'נדה?</a></li>
 			<li>בעריכת {{agenda.public_owner_name}}</li>
-			<li class="credit">מאת <a href="/">כנסת פתוחה</a></li>
+			<li class="credit">מאת <a href="/" target="_blank">כנסת פתוחה</a></li>
 		</ul>
-		
-	</div>
-	
-	
+	</div>	
 </section>
+
+<!-- ng-style isn't working -->
+<!-- try to deal with the info section via "position" -->

@@ -9,6 +9,9 @@
     "angular-bootstrap": "0.6.0",
     "angular-ui-utils": "0.0.4",
     "jquery": "~1.9.1",
-    "highcharts.com": "latest"
+    "highcharts.com": "latest",
+    "d3": "~3.3.10",
+    "nvd3":"latest",
+    "angularjs-nvd3-directives":"latest"
   }
 }

@@ -1,12 +1,21 @@
-angular.module('mean.system').controller('AgendasController', ['$scope', 'Global', 'Agendas', '$routeParams', '$location',
-    function($scope, Global, Agendas, $routeParams, $location) {
+angular.module('mean.system').controller('AgendasController', ['$scope', 'Global', 'Agendas', 'Dates', '$routeParams', '$location',
+    function($scope, Global, Agendas, Dates, $routeParams, $location) {
         
         $scope.byParties = true;
         $scope.byScore = true;
         $scope.range = {"start": new Date(), "end": new Date(2012, 1, 1)};
         $scope.embed = $location.absUrl();
+        $scope.display = {
+            "general" : false,
+            "share" : false,
+            "whatIsAgenda": false,
+            "memberDetails" : false,
+            "embed" : false
+        };
 
-         console.log($scope.embed)
+        $scope.dates = Dates;
+        console.log($scope.dates);
+
         $scope.query = function(param) {
             $scope.loading = true;
             // if(!$scope.$$phase) {
@@ -108,12 +117,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         $scope.query(range);
     };
 
-     $scope.display = {
-        "share" : false,
-        "whatIsAgenda": false,
-        "memberDetails" : false,
-        "embed" : false
-    };
+
 
     $scope.memberLinks = function(){
         $scope.fbLink = $scope.memberDetails.links.filter(function(x){return (x.url.indexOf("facebook.com") > -1); })[0];
@@ -126,6 +130,17 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         $scope.chart.options.title.text = $scope.agenda.name;
         $scope.chart.exportChart();
     };
+
+    $scope.toggleDisplay = function(name){
+        value = $scope.display[name];
+        angular.forEach($scope.display, function(k,v){
+            $scope.display[v] = false;
+        });
+        $scope.display[name] = !value;
+        $scope.display.general = !value;
+    };
+
+ 
  }
 
 ]);

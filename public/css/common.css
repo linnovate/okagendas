@@ -95,6 +95,21 @@ select, select:focus{
     float: right;
     clear: both;
 }
+.chart-container .active{
+    display: block;
+}
+.chart-container .inactive{
+    display: none;
+}
+/* info */
+.info{
+    position: relative;
+    height: 650px;
+}
+.info.active > *{
+    position: relative;
+    background-color: red;
+}
 /* footer */
 .footer, .footer > *{
     float: right;
@@ -109,8 +124,11 @@ select, select:focus{
 }
 .footer ul{
     border: 1px solid #89AEC0;
+    border-top: 1px dashed #65BAF7;
     direction: rtl;
     height: 30px;
+    background-color: #DAEDFB;
+    width: 100%;
 }
 .footer ul li{
     float: right;
@@ -118,7 +136,6 @@ select, select:focus{
     list-style: none;
     padding: 5px 26.5px;
     cursor: pointer;
-    background-color: #DAEDFB;
     background-repeat: no-repeat;
     background-position: 92%;
     border-left: 1px solid #89AEC0;
@@ -152,6 +169,8 @@ select, select:focus{
     text-align: right;
     border: 1px solid #89AEC0;
     border-bottom: none;
+    position: relative;
+    top: 568px;
 }
 .share-select > div{
     background-color: #DAEDFB;
@@ -159,7 +178,7 @@ select, select:focus{
 .share-select > div:hover{
     background-color: #215384;
 }
-.share-select a:hover{
+.share-select a:hover, .share-select div:hover a{
     color: #fff;
     text-decoration: none;
 }
@@ -170,6 +189,7 @@ select, select:focus{
     background-repeat: no-repeat;
     background-position: 92%;
     text-align: center;
+    height: 27px;
 }
 .share-select .pic{
     background-image: url(/img/icons/i_pic.png);
@@ -181,21 +201,36 @@ select, select:focus{
     background-image: url(/img/icons/i_fb.png);
 }
 .member-info{
-    padding: 25px;
+    /*padding: 25px;*/
     height: 208px;
     width: 356px;
     border: 1px solid #E5EAF0;
-    
     z-index: 20;
     background-color: #ffffff;/*DAEDFB*/
+    border-radius: 15px;
+}
+.member-info .details{
+    height: 150px;
+    margin: 15px 10px;
+}
+.member-info .details > div{
+    float: right;
 }
 .member-info .name{
     color: #5693CC;
 }
-.member-info .right img{
+.member-info .right{
     width: 132px;
     height: 173px;
+}
+.member-info .right img{
     border: 1px solid #E5EAF0;
+    height: 100%;
+    width: 100%;
+}
+.member-info .links{
+    background-color: #F6F6F6;
+    height: 50px;
 }
 
 .whatIsAgenda{
