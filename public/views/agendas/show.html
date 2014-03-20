@@ -9,9 +9,8 @@
 		<option value="" data-ng-click="selectParty(false)">כל המפלגות</option>
 	</select>
 	<div class="chart-container">
-		<!-- <range id="range1"></range> -->
-		<!-- <div range bind="agenda.parties" target="myChart"></div> -->
-		<!-- <div data-ng-include="'views/agendas/range.html'"></div> -->
+		<range id="range1"></range>
+		
 
 		<chart id="agendas-chart"  data='agendasChart' data-ng-class="{'active' : !display.general, 'inactive' : display.general}"></chart>
 		<div data-ng-show="display.memberDetails" data-ng-include="'views/agendas/member-details.html'"></div>
