@@ -1,17 +1,18 @@
 <div class="member-info">
-	<span ng-click="display.memberDetails=false">x</span><br/>
-	<div class="right">
-		<img src="{{memberDetails.img_url}}">
+	<div class="details">
+		<div class="right">
+			<img src="{{memberDetails.img_url}}">
+		</div>
+		<div class="left">
+			<span class="name">{{member.name}}</span><br/>
+			<span></span><br/>
+			<span>{{member.party}}</span>
+		</div>
 	</div>
-	<div class="left">
-		<span class="name">{{member.name}}</span>
-		<span></span>
-		<span>{{member.party}}</span>
-	</div>
-	<div class="bottom-member">
+	<div class="links">
 		<a href="{{knessetLink.url}}" target="_blank"><img src="" />כנסת</a>
-		<a href="{{twitterLink.url}}" target="_blank">Twitter</a>
-		<a href="{{fbLink.url}}" target="_blank">Facebook</a>
+		<a href="{{twitterLink.url}}" target="_blank"><img src="" />Twitter</a>
+		<a href="{{fbLink.url}}" target="_blank"><img src="" />Facebook</a>
 		<a href=""><img src=""></a>
 
 	</div>

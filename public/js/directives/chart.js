@@ -46,7 +46,7 @@ angular.module('mean').directive('chart', function () {
                                 if(scope.chartData.byParties)
                                     scope.$parent.selectParty(this.x);
                                 else
-                                     scope.$parent.showMemberDetails(this.x);      
+                                    scope.$parent.showMemberDetails(this.x);      
                             }
                         }
                     }
@@ -81,7 +81,7 @@ angular.module('mean').directive('chart', function () {
                 labels: {
                     style: {
                         color: '#222222',
-                        // font: '11px Trebuchet MS, Verdana, sans-serif'
+                        font: '14px Trebuchet MS, Verdana, sans-serif'
                     }
                 },
             },
@@ -103,7 +103,6 @@ angular.module('mean').directive('chart', function () {
                 newSettings.series[0].data.push({ y: value, color: (parseInt(value) > 0) ? colors[parseInt(Math.abs(value/10))] : negativeColors[parseInt(Math.abs(value/10))]}) ;
             });
             newSettings.chart.height = scope.chartData.data.length * 26;
-            
 
             if (scope.chartData.byScore){
                 newSettings.plotOptions.bar.dataLabels.formatter = function() {
@@ -113,7 +112,7 @@ angular.module('mean').directive('chart', function () {
             Highcharts.setOptions(theme);  
             var chart = new Highcharts.Chart(newSettings);
             scope.$parent.loading = false;
-            scope.$parent.chart = chart;
+            scope.$parent.chart = chart;    
         });
     //
     }
