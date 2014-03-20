@@ -3,7 +3,9 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         
         $scope.byParties = true;
         $scope.byScore = true;
-        $scope.range = {"start": new Date(), "end": new Date(2012, 1, 1)};
+        var start = new Date();
+        start.setMilliseconds(-86400000*365*2);
+        $scope.range = {"start": start, "end": new Date()};
         $scope.embed = $location.absUrl();
         $scope.display = {
             "general" : false,
