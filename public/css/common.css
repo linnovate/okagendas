@@ -1,6 +1,10 @@
+
 .content {
     margin-top:50px;
-    width:100%
+    width:100%;
+    font-family: openfont, sans-serif;
+    font-size: 14px;
+    line-height: 1.143;
 }
 
 /*footer {
@@ -105,10 +109,36 @@ select, select:focus{
 .info{
     position: relative;
     height: 650px;
+    margin-top: -650px;
+    background-color: rgba(32, 85, 123, 0.95)
+}
+.info div{
+    margin: 10%;
+    width: 80%;
+    position: absolute;
+    font-size: 20px;
+    color: #fff;
+}
+.info div p{
+    text-align: right;
+}
+.info div h5{
+    background: url(/img/icons/i_float.png) right no-repeat;
+    font-size: 20px;
+    direction: rtl;
+    padding-right: 23px;
 }
 .info.active > *{
     position: relative;
-    background-color: red;
+}
+.info span.exit{
+    background: #09f url(/img/icons/X.png) center 40px no-repeat;
+    height: 60px;
+    width: 26px;
+    position: absolute;
+    right: 10px;
+    top: -2px;
+    cursor: pointer;
 }
 /* footer */
 .footer, .footer > *{
@@ -170,7 +200,7 @@ select, select:focus{
     border: 1px solid #89AEC0;
     border-bottom: none;
     position: relative;
-    top: 568px;
+    margin-top: -82px;
 }
 .share-select > div{
     background-color: #DAEDFB;
@@ -236,8 +266,8 @@ select, select:focus{
 .whatIsAgenda{
     
 }
-
 .share-link input{
     width: 60%;
     margin: 0px auto;
 }
+

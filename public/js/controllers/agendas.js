@@ -3,7 +3,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         
         $scope.byParties = true;
         $scope.byScore = true;
-        $scope.range = {"start": new Date(), "end": new Date(2012, 1, 1)};
+        $scope.range = {"end": new Date(), "start": new Date(2012, 1, 1)};
         $scope.embed = $location.absUrl();
         $scope.display = {
             "general" : false,
@@ -139,8 +139,6 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         $scope.display[name] = !value;
         $scope.display.general = !value;
     };
-
- 
  }
 
 ]);
