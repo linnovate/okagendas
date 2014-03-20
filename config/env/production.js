@@ -1,5 +1,6 @@
 module.exports = {
-    db: "mongodb://localhost/mean",
+    db: "mongodb://localhost/okagendas",
+		port: 3001,
     app: {
         name: "MEAN - A Modern Stack - Production"
     },
