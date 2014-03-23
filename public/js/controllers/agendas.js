@@ -1,5 +1,5 @@
-angular.module('mean.system').controller('AgendasController', ['$scope', 'Global', 'Agendas', 'Dates', '$routeParams', '$location',
-    function($scope, Global, Agendas, Dates, $routeParams, $location) {
+angular.module('mean.system').controller('AgendasController', ['$scope', 'Global', 'Agendas', 'Dates', '$routeParams', '$location', '$http',
+    function($scope, Global, Agendas, Dates, $routeParams, $location, $http) {
         
         $scope.byParties = true;
         $scope.byScore = true;
@@ -141,6 +141,27 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         $scope.display[name] = !value;
         $scope.display.general = !value;
     };
+
+    $scope.facebook = function(){
+        xsvg = $scope.chart.getSVG();
+        options = {'svg': xsvg, 'width':600, 'async':true,'type':'image/png'};
+        $http.post('http://export.highcharts.com?svg=' + xsvg + '&width=600&async=true&type=image/png').
+            success(function(data, status, headers, config) {
+              // this callback will be called asynchronously
+              // when the response is available
+              console.log(headers)
+               console.log('get the file from relative url: ', data);
+                $('#render').html('<img src="http://export.highcharts.com/' + data + '"/>');
+            }).
+            error(function(data, status, headers, config) {
+                console.log(status, headers, config)
+              // called asynchronously if an error occurs
+              // or server returns response with an error status.
+            });
+
+
+       
+    }
  }
 
 ]);

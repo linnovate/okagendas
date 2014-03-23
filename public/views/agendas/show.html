@@ -16,7 +16,7 @@
 			<div class="share-select" data-ng-show="display.share">
 				<div class="pic"><a data-ng-click="export()">כתמונה</a></div>
 				<div class="embed"><a data-ng-click="toggleDisplay('embed')">עמבד</a></div>
-				<div class="facebook"><a href="">פייסבוק</a></div>
+				<div class="facebook"><a data-ng-click="facebook()" href="">פייסבוק</a></div>
 			</div>
 			<div data-ng-show="display.embed" data-ng-include="'views/agendas/share-link.html'"></div>
 			<div data-ng-show="display.about" data-ng-include="'views/agendas/about.html'"></div>
@@ -34,3 +34,4 @@
 		</ul>
 	</div>	
 </section>
+<div id='render'></div>

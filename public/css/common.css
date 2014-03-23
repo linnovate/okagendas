@@ -222,7 +222,7 @@ select, select:focus{
     height: 27px;
 }
 .share-select .pic{
-    background-image: url(/img/icons/i_pic.png);
+    /*background-image: url(/img/icons/i_pic.png);*/
 }
 .share-select .embed{
     background-image: url(/img/icons/i_embed.png);
