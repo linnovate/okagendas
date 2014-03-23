@@ -4,7 +4,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         $scope.byParties = true;
         $scope.byScore = true;
         var start = new Date();
-        start.setMilliseconds(-86400000*365*2);
+        start.setMilliseconds(-86400000*365*1.5);
         $scope.range = {"start": start, "end": new Date()};
         $scope.embed = $location.absUrl();
         $scope.display = {
