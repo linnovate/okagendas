@@ -11,8 +11,7 @@ angular.module('mean').directive('chart', function () {
         var chartsDefaults = {
             chart: {
                 renderTo: element[0],
-                type: "bar",
-                width: attrs.width || null
+                type: "bar"
             },
             yAxis: {
                 labels: {
@@ -42,7 +41,6 @@ angular.module('mean').directive('chart', function () {
                     point: {
                         events: {
                             click: function() {
-                                console.log(scope.chartData.byParties);
                                 if(scope.chartData.byParties)
                                     scope.$parent.selectParty(this.x);
                                 else

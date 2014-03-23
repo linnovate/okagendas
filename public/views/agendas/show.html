@@ -10,12 +10,9 @@
 	</select>
 	<div class="chart-container">
 		<range id="range1"></range>
-		
-
-		<chart id="agendas-chart"  data='agendasChart' data-ng-class="{'active' : !display.general, 'inactive' : display.general}"></chart>
+		<chart id="agendas-chart" data='agendasChart' data-ng-class="{'active' : !display.general, 'inactive' : display.general}"></chart>
 		<div data-ng-show="display.memberDetails" data-ng-include="'views/agendas/member-details.html'"></div>
-		<div class="info" data-ng-show="display.general" data-ng-class="{'active' : display.general, 'inactive' : !display.general}">
-
+		<div data-ng-show="display.general" data-ng-class="{'active' : display.general, 'inactive' : !display.general}">
 			<div class="share-select" data-ng-show="display.share">
 				<div class="pic"><a data-ng-click="export()">כתמונה</a></div>
 				<div class="embed"><a data-ng-click="toggleDisplay('embed')">עמבד</a></div>
@@ -37,6 +34,3 @@
 		</ul>
 	</div>	
 </section>
-
-<!-- ng-style isn't working -->
-<!-- try to deal with the info section via "position" -->

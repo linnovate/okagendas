@@ -141,8 +141,6 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         $scope.display[name] = !value;
         $scope.display.general = !value;
     };
-
- 
  }
 
 ]);
