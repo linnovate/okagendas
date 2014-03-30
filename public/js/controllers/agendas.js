@@ -159,18 +159,10 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         canvas = document.getElementById('canvas');
         canvg(canvas, svg);
         if (canvas.getContext) {
-            var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            $scope.chartImage = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
         }
-        console.log("facebook")
-        console.log(image)
+        console.log($scope.chartImage)
 
-        // var metaDesc = angular.element($rootElement.find('meta[property="og:description"]')[0]);
-
-        // $('meta[property="og:description"]').attr('content', $scope.agenda.description);
-        // $('meta[property="og:image"]').attr('content', image);
-        // $('meta[property="og:title"]').attr('content', $scope.agenda.name);
-
-     
     }
  }
 

@@ -18,7 +18,7 @@
 			<div class="share-select" data-ng-show="display.share">
 				<div class="pic"><a data-ng-click="export()">כתמונה</a></div>
 				<div class="embed"><a data-ng-click="toggleDisplay('embed')">עמבד</a></div>
-				<div class="facebook"><a data-ng-click="facebook()" href="">aaaaaa
+				<div class="facebook"><a data-ng-click="facebook()" href="">פייסבוק
 					<!-- <div class="fb-share-button" data-href="http://linnoapps.cloudapp.net:3001/#!/agendas/74/" data-type="icon"></div> -->
 			</a></div>
 			</div>
@@ -41,10 +41,14 @@
 <canvas id="canvas" width="{{chart.chartWidth}}px" height="{{chart.chartHeight}}px" ></canvas>
 
 
-
-<!-- <div id="toolbox" class="all-share addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="http://linnoapps.cloudapp.net:3001/#!/agendas/74/" addthis:title="title">
+<!-- 
+<div id="toolbox" class="all-share addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="http://linnoapps.cloudapp.net:3001/#!/agendas/74/" addthis:title="title">
                 
                 <img class="fb-share-image" ng-click="facebook()" src="/img/icons/facebook.png" alt="Facebook" />
-            </div> -->
+            </div>
 
- 
+            <script>
+                setTimeout(function() {
+                    addthis.toolbox("#toolbox");
+                }, 500);
+                </script> -->
