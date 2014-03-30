@@ -1,11 +1,11 @@
-angular.module('mean.system').controller('AgendasController', ['$scope', 'Global', 'Agendas', 'Dates', '$routeParams', '$location', '$http',
-    function($scope, Global, Agendas, Dates, $routeParams, $location, $http) {
+angular.module('mean.system').controller('AgendasController', ['$scope', 'Global', 'Agendas', '$rootElement', '$routeParams', '$location', '$http',
+    function($scope, Global, Agendas, $rootElement, $routeParams, $location, $http) {
         
         $scope.byParties = true;
         $scope.byScore = true;
         var start = new Date();
         start.setMilliseconds(-86400000*365*1.5);
-        $scope.range = {"start": start, "end": new Date()};
+        $scope.range = {"startValue": start, "endValue": new Date()};
         $scope.embed = $location.absUrl();
         $scope.display = {
             "general" : false,
@@ -15,8 +15,6 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
             "embed" : false
         };
 
-        $scope.dates = Dates;
-        console.log($scope.dates);
 
         $scope.query = function(param) {
             $scope.loading = true;
@@ -32,7 +30,6 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         };
 
         $scope.initAgendasChart = function() {//display data by parties or by members
-            console.log($scope.agenda);
             $scope.display.memberDetails = false;
             $scope.loading = true;
             values = [];
@@ -98,7 +95,9 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         Agendas.getInfo("/member/" + $scope.member.id, function(memberDetails){
             $scope.memberDetails = memberDetails;
             $scope.memberLinks();
+            $scope.memberPosition = 370 + memberIndex*25 + "px";
             $scope.display.memberDetails = true;
+
             if(!$scope.$$phase) {
                 $scope.$apply();
             }
@@ -112,26 +111,38 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
      };
 
     $scope.selectRange = function(rangeObj){
+        if ($scope.chart)
+            $scope.chart.showLoading('טוען נתונים...');
         range = "";
         range += rangeObj.startValue.getFullYear().toString()+("0" + (rangeObj.startValue.getMonth() + 1)).slice(-2);
         range += "-" + rangeObj.endValue.getFullYear().toString()+("0" + (rangeObj.endValue.getMonth() + 1)).slice(-2);
-        console.log(range);
-        $scope.query(range);
+        if (rangeObj !== $scope.range){
+            $scope.query(range);
+            $scope.range = rangeObj;
+        }
+            
     };
-
 
 
     $scope.memberLinks = function(){
         $scope.fbLink = $scope.memberDetails.links.filter(function(x){return (x.url.indexOf("facebook.com") > -1); })[0];
         $scope.twitterLink = $scope.memberDetails.links.filter(function(x){return (x.url.indexOf("twitter.com") > -1); })[0];
         $scope.knessetLink = $scope.memberDetails.links.filter(function(x){return (x.url.indexOf("knesset.gov.il") > -1); })[0];
-        console.log($scope.knessetLink);
+        $scope.youtubeLink = $scope.memberDetails.links.filter(function(x){return (x.url.indexOf("youtube.com") > -1); })[0];
     };
 
     $scope.export = function(){
-        $scope.chart.options.title.text = $scope.agenda.name;
+        $scope.addTitleToExport();
         $scope.chart.exportChart();
     };
+
+    $scope.addTitleToExport = function(){
+        $scope.chart.options.title.text = $scope.agenda.name;
+        
+        start = parseInt($scope.range.startValue.getMonth()) + 1 + "/" + $scope.range.startValue.getFullYear();
+        end = parseInt($scope.range.endValue.getMonth()) + 1 + "/" + $scope.range.endValue.getFullYear();
+        $scope.chart.options.subtitle.text = end + " - " + start;
+    }
 
     $scope.toggleDisplay = function(name){
         value = $scope.display[name];
@@ -143,24 +154,23 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
     };
 
     $scope.facebook = function(){
-        xsvg = $scope.chart.getSVG();
-        options = {'svg': xsvg, 'width':600, 'async':true,'type':'image/png'};
-        $http.post('http://export.highcharts.com?svg=' + xsvg + '&width=600&async=true&type=image/png').
-            success(function(data, status, headers, config) {
-              // this callback will be called asynchronously
-              // when the response is available
-              console.log(headers)
-               console.log('get the file from relative url: ', data);
-                $('#render').html('<img src="http://export.highcharts.com/' + data + '"/>');
-            }).
-            error(function(data, status, headers, config) {
-                console.log(status, headers, config)
-              // called asynchronously if an error occurs
-              // or server returns response with an error status.
-            });
+        $scope.addTitleToExport();
+        svg = $scope.chart.getSVG();
+        canvas = document.getElementById('canvas');
+        canvg(canvas, svg);
+        if (canvas.getContext) {
+            var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        }
+        console.log("facebook")
+        console.log(image)
 
+        // var metaDesc = angular.element($rootElement.find('meta[property="og:description"]')[0]);
 
-       
+        // $('meta[property="og:description"]').attr('content', $scope.agenda.description);
+        // $('meta[property="og:image"]').attr('content', image);
+        // $('meta[property="og:title"]').attr('content', $scope.agenda.name);
+
+     
     }
  }
 

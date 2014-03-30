@@ -1,3 +1,5 @@
+<div id="fb-root"></div>
+
 <section data-ng-controller="AgendasController" data-ng-init="query(null)">
 	<h1>{{agenda.name}}</h1>
 	<div class="by-score-container">
@@ -16,7 +18,9 @@
 			<div class="share-select" data-ng-show="display.share">
 				<div class="pic"><a data-ng-click="export()">כתמונה</a></div>
 				<div class="embed"><a data-ng-click="toggleDisplay('embed')">עמבד</a></div>
-				<div class="facebook"><a data-ng-click="facebook()" href="">פייסבוק</a></div>
+				<div class="facebook"><a data-ng-click="facebook()" href="">aaaaaa
+					<!-- <div class="fb-share-button" data-href="http://linnoapps.cloudapp.net:3001/#!/agendas/74/" data-type="icon"></div> -->
+			</a></div>
 			</div>
 			<div data-ng-show="display.embed" data-ng-include="'views/agendas/share-link.html'"></div>
 			<div data-ng-show="display.about" data-ng-include="'views/agendas/about.html'"></div>
@@ -34,4 +38,13 @@
 		</ul>
 	</div>	
 </section>
-<div id='render'></div>
+<canvas id="canvas" width="{{chart.chartWidth}}px" height="{{chart.chartHeight}}px" ></canvas>
+
+
+
+<!-- <div id="toolbox" class="all-share addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="http://linnoapps.cloudapp.net:3001/#!/agendas/74/" addthis:title="title">
+                
+                <img class="fb-share-image" ng-click="facebook()" src="/img/icons/facebook.png" alt="Facebook" />
+            </div> -->
+
+ 

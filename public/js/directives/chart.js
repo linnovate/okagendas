@@ -44,7 +44,7 @@ angular.module('mean').directive('chart', function () {
                                 if(scope.chartData.byParties)
                                     scope.$parent.selectParty(this.x);
                                 else
-                                    scope.$parent.showMemberDetails(this.x);      
+                                    scope.$parent.showMemberDetails(this.x);
                             }
                         }
                     }
@@ -110,7 +110,8 @@ angular.module('mean').directive('chart', function () {
             Highcharts.setOptions(theme);  
             var chart = new Highcharts.Chart(newSettings);
             scope.$parent.loading = false;
-            scope.$parent.chart = chart;    
+            scope.$parent.chart = chart; 
+            chart.hideLoading();   
         });
     //
     }

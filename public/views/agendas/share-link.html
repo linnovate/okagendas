@@ -1,7 +1,7 @@
-<div class="info share-link">
+<div class="info share-link" ng-style="{'height': chart.chartHeight +'px', 'margin-top' : '-' + chart.chartHeight +'px'}">
 	<span class="exit" ng-click="display.embed=false">&nbsp;</span>
 	<div>
 		<p>הטמיעו את האגנדה אצלכם באתר</p>
-		<input type="text" value='<iframe width="600" height="400" src="{{embed}}"></iframe>' />
+		<input type="text" value='<iframe width="{{chart.chartWidth}}" height="{{chart.chartHeight}}" src="{{embed}}"></iframe>' />
 	</div>
 </div>

@@ -108,12 +108,10 @@ select, select:focus{
 /* info */
 .info{
     position: relative;
-    height: 650px;
-    margin-top: -650px;
     background-color: rgba(32, 85, 123, 0.95)
 }
 .info div{
-    margin: 10%;
+    margin: 5%;
     width: 80%;
     position: absolute;
     font-size: 20px;
@@ -121,6 +119,7 @@ select, select:focus{
 }
 .info div p{
     text-align: right;
+    direction: rtl;
 }
 .info div h5{
     background: url(/img/icons/i_float.png) right no-repeat;
@@ -231,6 +230,8 @@ select, select:focus{
     background-image: url(/img/icons/i_fb.png);
 }
 .member-info{
+    position: absolute;
+    right: 25%;
     /*padding: 25px;*/
     height: 208px;
     width: 356px;
@@ -260,14 +261,28 @@ select, select:focus{
 }
 .member-info .links{
     background-color: #F6F6F6;
+    border-top: 1 solid #E6E6E6;
     height: 50px;
+    direction: rtl;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.member-info .links a{
+    padding: 14px 10px 0 0;
+    float: right;
 }
 
 .whatIsAgenda{
     
 }
 .share-link input{
-    width: 60%;
+    width: 80%;
     margin: 0px auto;
 }
 
+.highcharts-loading{
+    direction: rtl;
+}
+#canvas{
+    display: none;
+}

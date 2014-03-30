@@ -119,8 +119,8 @@
                                 height: 150,
                             },
                             scale: {
-                                startValue: rangeObj.end,
-                                endValue: rangeObj.start,
+                                startValue: rangeObj.endValue,
+                                endValue: rangeObj.startValue,
                                 minorTickInterval: {
                                     months: 1
                                 },
@@ -135,8 +135,8 @@
                                         for (var index in ksessions) {
                                             if (ksessions[index].year == year) {
                                                 var time = value.value.getTime();
-                                                if (Math.abs(time - ksessions[index].start) < 86400000 * 7) {
-                                                    console.log("mongth")
+                                                if (Math.abs(time - ksessions[index].startValue) < 86400000 * 7) {
+                                                    // console.log("mongth")
                                                 }
 
                                             }
@@ -156,8 +156,8 @@
                                 },
                             },
                             selectedRange: {
-                                startValue: rangeObj.end,
-                                endValue: rangeObj.end - 86400000 * 120
+                                startValue: rangeObj.endValue,
+                                endValue: rangeObj.endValue - 86400000 * 120
                             },
                             selectedRangeChanged: function(e) {
                                 scope.$parent.selectRange(e);
@@ -178,11 +178,11 @@
                         var firstStart = null;
 
                         ksessions.forEach(function(session, index) {
-                            if (session.start > rangeObj.start.getTime() && session.start < rangeObj.end.getTime()) {
+                            if (session.startValue > rangeObj.startValue.getTime() && session.startValue < rangeObj.endValue.getTime()) {
                                 //used to take leading first end if before first start - (not implemented yet)
-                                if (!firstStart) firstStart = session.start;
+                                if (!firstStart) firstStart = session.startValue;
 
-                                var diff = session.start - rangeObj.start.getTime();
+                                var diff = session.startValue - rangeObj.startValue.getTime();
                                 var startOffset = diff / scale;
 
 
@@ -191,10 +191,10 @@
                                 var color = '#5571c6';
                                 var opacity = 0.5;
 
-                                if (session.end < rangeObj.end.getTime()) {
+                                if (session.endValue < rangeObj.endValue.getTime()) {
                                     color = (index % 2 == 0) ? '#5571c6' : '#5571c6';
                                     opacity = (index % 2 == 0) ? 0.65 : 0.5;
-                                    var endDiff = session.end - rangeObj.start.getTime();
+                                    var endDiff = session.endValue - rangeObj.startValue.getTime();
                                     var endOffset = endDiff / scale;
                                     size = endOffset - startOffset;
                                 }
