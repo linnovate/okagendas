@@ -162,16 +162,21 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
             $scope.chartImage = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
         }
         console.log($scope.chartImage);
-        ezfb.ui({
-            method: 'feed',
-            name: $scope.agenda.name,
-            picture: $scope.chartImage,
-            link: $scope.embed,
-            caption: 'caption',
-            description: $scope.agenda.description,
-        }).then(function(res) {
-            console.log(res)
-        })
+        $http.post('/saveImage', {"data": $scope.chartImage})
+        .success(function(data, status, headers, config){
+            console.log(data);
+            ezfb.ui({
+                method: 'feed',
+                name: $scope.agenda.name,
+                picture: $location.host() + data,
+                link: $scope.embed,
+                caption: 'caption',
+                description: $scope.agenda.description,
+            }).then(function(res) {
+                console.log(res)
+            })
+        });
+        
 
     }
  }
