@@ -168,10 +168,10 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
                 name: $scope.agenda.name,
                 picture: $location.host() + ":" + $location.port() + data,
                 link: $scope.embed,
-                caption: 'caption',
+                caption: '',
                 description: $scope.agenda.description,
             }).then(function(res) {
-                console.log(res)
+                $scope.toggleDisplay('facebook');
             })
         });
         

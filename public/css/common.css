@@ -170,6 +170,9 @@ select, select:focus{
     border-left: 1px solid #89AEC0;
     text-align: center;
 }
+.footer ul li:hover{
+    background-color: #65BAF7
+}
 .footer ul li a{
     color: #25547E;
     text-decoration: none;
