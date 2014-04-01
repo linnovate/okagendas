@@ -164,7 +164,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         console.log($scope.chartImage);
         $http.post('/saveImage', {"data": $scope.chartImage})
         .success(function(data, status, headers, config){
-            console.log(data);
+            console.log($location.host() + data);
             ezfb.ui({
                 method: 'feed',
                 name: $scope.agenda.name,
