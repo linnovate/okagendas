@@ -2333,11 +2333,12 @@ exports.getInfo = function(req, res){
 
 exports.saveImage = function(req, res){
 	var fs = require('fs'),
-	filePath ="/tmp/"+  new Date().getTime()+".png",
+	filePath = process.cwd() + "/tmp/"+  new Date().getTime()+".png",
 	base64Data = req.body.data.split(',')[1];
 	fs.writeFile(filePath, base64Data, 'base64', function(err) {
 		if (err){
 			console.log(err);
+			throw err;
 		}
 		res.send(filePath)
 	  	
