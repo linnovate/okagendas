@@ -161,14 +161,12 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         if (canvas.getContext) {
             $scope.chartImage = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
         }
-        console.log($scope.chartImage);
         $http.post('/saveImage', {"data": $scope.chartImage})
         .success(function(data, status, headers, config){
-            console.log($location.host() + data);
             ezfb.ui({
                 method: 'feed',
                 name: $scope.agenda.name,
-                picture: $location.host() + data,
+                picture: $location.host() + ":" + $location.port() + data,
                 link: $scope.embed,
                 caption: 'caption',
                 description: $scope.agenda.description,
