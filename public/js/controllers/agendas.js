@@ -165,7 +165,7 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         ezfb.ui({
             method: 'feed',
             name: $scope.agenda.name,
-            picture: 'http://linnoapps.cloudapp.net:3001/img/loaders/loader.gif',
+            picture: $scope.chartImage,
             link: $scope.embed,
             caption: 'caption',
             description: $scope.agenda.description,
