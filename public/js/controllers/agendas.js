@@ -1,5 +1,5 @@
-angular.module('mean.system').controller('AgendasController', ['$scope', 'Global', 'Agendas', '$rootElement', '$routeParams', '$location', '$http',
-    function($scope, Global, Agendas, $rootElement, $routeParams, $location, $http) {
+angular.module('mean.system').controller('AgendasController', ['$scope', 'Global', 'Agendas', 'ezfb', '$routeParams', '$location', '$http',
+    function($scope, Global, Agendas, ezfb, $routeParams, $location, $http) {
         
         $scope.byParties = true;
         $scope.byScore = true;
@@ -161,7 +161,17 @@ angular.module('mean.system').controller('AgendasController', ['$scope', 'Global
         if (canvas.getContext) {
             $scope.chartImage = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
         }
-        console.log($scope.chartImage)
+        console.log($scope.chartImage);
+        ezfb.ui({
+            method: 'feed',
+            name: $scope.agenda.name,
+            picture: 'http://linnoapps.cloudapp.net:3001/img/loaders/loader.gif',
+            link: $scope.embed,
+            caption: 'caption',
+            description: $scope.agenda.description,
+        }).then(function(res) {
+            console.log(res)
+        })
 
     }
  }
